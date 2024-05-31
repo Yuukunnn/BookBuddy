@@ -3,9 +3,11 @@ Fetch the book data from the provided API. Users should be able to click on an i
 /* API: https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books */
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
+  const Navigate = useNavigate();
 
   useEffect(() => {
     const getBooks = () => {
@@ -23,15 +25,15 @@ const Books = () => {
     getBooks();
   }, []);
 
+
   return (
     <div className="Books_Container">
       {books.map((book) => (
         <div>
           <img src={book.coverimage} alt={book.title} className="Book_Pic" />
           <div className="Book_Details">
-            <p>Title: {book.title}</p>
+            <p onClick={()=>Navigate(`/books/${book.id}`)}>Title: {book.title}</p>
             <p>Author: {book.author}</p>
-            <p>Description: {book.description}</p>
           </div>
         </div>
       ))}
