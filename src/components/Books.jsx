@@ -7,7 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
-  const Navigate = useNavigate();
+  const [targetName, setTargetName] = useState("");
+  const [filteredBooks, setFilteredBooks] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getBooks = () => {
@@ -19,25 +21,52 @@ const Books = () => {
         .then((response) => response.json())
         .then((result) => {
           setBooks(result.books);
+          setFilteredBooks(result.books);
         })
         .catch(console.error);
     };
     getBooks();
   }, []);
 
+  const handleSearchClick = () => {
+    if (targetName.trim() === "") {
+      setFilteredBooks(books);
+    } else {
+      setFilteredBooks(
+        books.filter((book) => {
+            const bookString = (book.title + book.author).toLowerCase()
+          return bookString.includes(targetName);
+        })
+      );
+    }
+  };
 
   return (
-    <div className="Books_Container">
-      {books.map((book) => (
-        <div>
-          <img src={book.coverimage} alt={book.title} className="Book_Pic" />
-          <div className="Book_Details">
-            <p onClick={()=>Navigate(`/books/${book.id}`)}>Title: {book.title}</p>
-            <p>Author: {book.author}</p>
+    <>
+      <div>
+        <input
+          type="text"
+          placeholder="search by book name"
+          value={targetName}
+          onChange={(event) => setTargetName(event.target.value)}
+        />
+        <button onClick={handleSearchClick}>Search</button>
+      </div>
+
+      <div className="Books_Container">
+        {filteredBooks.map((book) => (
+          <div>
+            <img src={book.coverimage} alt={book.title} className="Book_Pic" />
+            <div className="Book_Details">
+              <p onClick={() => navigate(`/books/${book.id}`)}>
+                Title: {book.title}
+              </p>
+              <p>Author: {book.author}</p>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 };
 export default Books;
