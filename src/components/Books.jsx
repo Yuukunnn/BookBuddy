@@ -62,6 +62,7 @@ const Books = () => {
                 Title: {book.title}
               </p>
               <p>Author: {book.author}</p>
+              <button disabled={book.available===false} >Check Out</button>
             </div>
           </div>
         ))}
