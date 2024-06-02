@@ -22,7 +22,7 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
     <Routes>
       <Route path='/' element={<Home />}></Route>
       <Route path='/account' element={<Account userData={userData} />}></Route>
-      <Route path='/books' element={<Books />}></Route>
+      <Route path='/books' element={<Books userToken={userToken} setUserData={setUserData}/>}></Route>
       <Route path='/books/:bookId' element={<SingleBook />}></Route>
       <Route path='/register' element={<Register />}></Route>
       <Route path='/login' element={<Login setUserData={setUserData} setUserToken={setUserToken} setIsLoggedIn={setIsLoggedIn}/>}></Route>

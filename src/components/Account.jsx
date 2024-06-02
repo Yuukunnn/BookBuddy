@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Account =({userData}) =>{
 
 const handleReturnBook = () =>{
-    
+
 }
 
     return (
@@ -15,7 +15,7 @@ const handleReturnBook = () =>{
             <p>First Name: {userData.firstname}</p>
             <p>Last Name: {userData.lastname}</p>
             <p>Email: {userData.email}</p>
-            <p>Books: {userData.books.length > 0 && userData.books.map((book)=>(
+            <p>Books: {userData?.books.length > 0 && userData?.books.map((book)=>(
                 <div>
                    <h5>{book.title}</h5>
                    <button onClick={handleReturnBook} >Return</button>
