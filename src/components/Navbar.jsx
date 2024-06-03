@@ -2,7 +2,6 @@
 You may consider conditionally rendering some options - for example 'Login' should be available if someone has not logged in yet. */
 
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 const Navbar = ({isLoggedIn}) =>{
    

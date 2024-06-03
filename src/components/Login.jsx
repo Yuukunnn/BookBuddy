@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ setUserData, setUserToken, setIsLoggedIn}) => {
+const Login = ({ setUserData, setUserToken, setIsLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -38,9 +38,13 @@ const Login = ({ setUserData, setUserToken, setIsLoggedIn}) => {
         );
         const user = await userResponse.json();
         console.log(user);
-        setUserData(user);
-        setIsLoggedIn(true);
-        navigate('/')
+        if (user.id) {
+          setUserData(user);
+          setIsLoggedIn(true);
+          navigate("/");
+        } else {
+            alert("Invalid username or password")
+        }
       } catch {
         console.error(error.message);
       }
