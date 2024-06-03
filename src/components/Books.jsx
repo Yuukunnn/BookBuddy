@@ -5,7 +5,7 @@ Fetch the book data from the provided API. Users should be able to click on an i
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Books = ({ userToken, setUserData, isLoggedIn }) => {
+const Books = ({ userToken, isLoggedIn }) => {
   const [books, setBooks] = useState([]);
   const [targetName, setTargetName] = useState("");
   const [filteredBooks, setFilteredBooks] = useState([]);
@@ -58,24 +58,6 @@ const Books = ({ userToken, setUserData, isLoggedIn }) => {
     )
       .then(() => {
         setTrigger(!trigger);
-        fetch(
-          "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/me",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${userToken}`,
-            },
-          }
-        )
-          .then((response) => response.json())
-          .then((response) => {
-            console.log(response);
-            setUserData(response);
-            navigate("/account");
-          })
-          .catch((error) => {
-            console.error(error.message);
-          });
       })
       .catch((err) => console.error(err));
   };

@@ -37,7 +37,6 @@ const Login = ({ setUserData, setUserToken, setIsLoggedIn }) => {
           }
         );
         const user = await userResponse.json();
-        console.log(user);
         if (user.id) {
           setUserData(user);
           setIsLoggedIn(true);
