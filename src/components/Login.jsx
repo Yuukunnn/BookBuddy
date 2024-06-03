@@ -40,7 +40,7 @@ const Login = ({ setUserData, setUserToken, setIsLoggedIn }) => {
         if (user.id) {
           setUserData(user);
           setIsLoggedIn(true);
-          navigate("/");
+          navigate("/books");
         } else {
             alert("Invalid username or password")
         }
