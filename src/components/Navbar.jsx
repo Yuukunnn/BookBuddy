@@ -37,7 +37,7 @@ function samePageLinkNavigation(event) {
 }
 
 const Navbar = ({ isLoggedIn }) => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(1);
 
   const handleChange = (event, newValue) => {
     // event.type can be equal to focus with selectionFollowsFocus.

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Grid, Box, TextField, Button } from "@mui/material";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -36,45 +37,64 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleRegisterFormSubmit}>
-        <label>
-          First Name:
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-        </label>
-        <label>
-          Last Name:
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        </label>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
+    <Box
+    component="form"
+    onSubmit={handleRegisterFormSubmit}
+    sx={{
+      width: '100%',
+      height: '91vh',
+      marginTop: '3%',
+      display: 'flex',
+      justifyContent:'center', alignItems:'center',
+      backgroundImage: 'url(/src/assets/311lxF-GHbL._AC_UF894,1000_QL80_.jpg)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
+    }}
+    noValidate
+  >
+    <Grid container direction="column" spacing={4} justifyContent='center' alignItems='center'
+    sx={{
+      marginBottom: '150px',
+      width: '25%',
+      height: '80%'
+    }}
+    >
+      <Grid container item direction='column' sx={{ gap: '10px'}}>
+        <TextField
+          variant="outlined"
+          label="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <TextField
+          variant="outlined"
+          label="Last Name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+        <TextField
+          variant="outlined"
+          label="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField
+          variant="outlined"
+          label="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </Grid>
+      
 
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+      <Grid container item justifyContent='center' sx={{ gap: '20px' }}>
+        <Button variant="contained" type="submit">
+          Submit
+        </Button>
+      </Grid>
+    </Grid>
+  </Box>
+
   );
 };
 

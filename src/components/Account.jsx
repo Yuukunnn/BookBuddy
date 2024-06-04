@@ -2,10 +2,16 @@
 You may consider conditionally rendering a message for other users that prompts them to log in or create an account.  */
 
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from '@mui/material'
 
 const Account = ({ userData, reservedBooks, setReservedBooks, userToken }) => {
+  const [trigger, setTrigger] = useState(false);
+  const navigate = useNavigate();
 
-const [trigger, setTrigger] = useState(false);
+  useEffect(() => {
+    console.log('reserbedBooks: ', reservedBooks)
+  }, [ reservedBooks]);
 
   useEffect(() => {
     fetch(
@@ -20,7 +26,7 @@ const [trigger, setTrigger] = useState(false);
     )
       .then((response) => response.json())
       .then((result) => {
-        setReservedBooks(result.reservation)
+        setReservedBooks(result.reservation);
       })
       .catch(console.error);
   }, [trigger]);
@@ -33,7 +39,7 @@ const [trigger, setTrigger] = useState(false);
           "Content-Type": "application/json",
           Authorization: `Bearer ${userToken}`,
         },
-        method: "DELETE"
+        method: "DELETE",
       }
     )
       .then(() => {
@@ -44,19 +50,25 @@ const [trigger, setTrigger] = useState(false);
 
   return (
     <div>
-      <p>First Name: {userData.firstname}</p>
-      <p>Last Name: {userData.lastname}</p>
-      <p>Email: {userData.email}</p>
-      <p>
-        Books:{" "}
-        {reservedBooks.length > 0 &&
-          reservedBooks.map((reservedBook) => (
-            <div>
-              <h5>{reservedBook.title}</h5>
-              <button onClick={()=>handleReturnBook(reservedBook.id)}>Return</button>
-            </div>
-          ))}
-      </p>
+      {Object.keys(userData).length > 0 ? (
+        <>
+          <p>First Name: {userData.firstname}</p>
+          <p>Last Name: {userData.lastname}</p>
+          <p>Email: {userData.email}</p>
+          <p>
+            Books:{" "}
+            {reservedBooks?.length > 0 &&
+              reservedBooks.map((reservedBook) => (
+                <div>
+                  <h5>{reservedBook.title}</h5>
+                  <button onClick={() => handleReturnBook(reservedBook.id)}>
+                    Return
+                  </button>
+                </div>
+              ))}
+          </p>
+        </>
+      ): <Button variant="contained" onClick={() => navigate('/login')}>Login</Button>}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 /* TODO - add your code to create a functional React component that renders a login form */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Grid, Box, TextField, Button } from "@mui/material";
 
 const Login = ({ setUserData, setUserToken, setIsLoggedIn }) => {
   const [email, setEmail] = useState("");
@@ -42,7 +43,7 @@ const Login = ({ setUserData, setUserToken, setIsLoggedIn }) => {
           setIsLoggedIn(true);
           navigate("/books");
         } else {
-            alert("Invalid username or password")
+          alert("Invalid username or password");
         }
       } catch {
         console.error(error.message);
@@ -53,32 +54,51 @@ const Login = ({ setUserData, setUserToken, setIsLoggedIn }) => {
   };
 
   return (
-    <form onSubmit={handleLoginFormSubmit}>
-      <label>
-        Email
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        ></input>
-      </label>
+    <Box
+      component="form"
+      onSubmit={handleLoginFormSubmit}
+      sx={{
+        width: '100%',
+        height: '91vh',
+        marginTop: '3%',
+        display: 'flex',
+        justifyContent:'center', alignItems:'center',
+        backgroundImage: 'url(/src/assets/311lxF-GHbL._AC_UF894,1000_QL80_.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
+      noValidate
+    >
+      <Grid container direction="column" spacing={4} justifyContent='center' alignItems='center'
+      sx={{
+        marginBottom: '150px',
+        width: '25%',
+        height: '80%'
+      }}
+      >
+        <Grid container item direction='column' sx={{ gap: '10px'}}>
+          <TextField
+            variant="outlined"
+            label="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            variant="outlined"
+            label="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Grid>
 
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        ></input>
-      </label>
-
-      <button type="submit">Login</button>
-      <button onClick={() => navigate("/register")}>Register</button>
-    </form>
+        <Grid container item justifyContent='center' sx={{ gap: '20px' }}>
+          <Button variant="contained" type="submit">
+            Login
+          </Button>
+          <Button variant="outlined" onClick={() => navigate("/register")}>Register</Button>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 
