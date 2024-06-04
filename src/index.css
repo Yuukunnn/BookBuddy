@@ -3,6 +3,7 @@ body {
   background-color: #f8f8f8;
   margin: 0;
   padding: 0;
+  height:100vh;
 }
 
 #logo-image {
@@ -10,4 +11,19 @@ body {
   margin-right: 10px;
 }
 
-/* Add your own custom styles here */
+.Home_Wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  margin-top: 3%;
+}
+
+.Home_Container {
+  width: 100%;
+  position:relative;
+  background-color:#eeeae4;
+  margin: 0;
+  padding:10px;
+  text-align: center;
+}
