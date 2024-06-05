@@ -86,7 +86,7 @@ sx={{
             reservedBooks.map((reservedBook) => (
               <>
                 <ListItem>
-                  <ListItemText primary={`Books in reading:  ${reservedBook.title}`} sx={{fontStyle:"italic", color:"black"}}/>
+                  <ListItemText primary={`Book in reading:  ${reservedBook.title}`} sx={{fontStyle:"italic", color:"black"}}/>
                   <Button onClick={() => handleReturnBook(reservedBook.id)}>
                     Return
                   </Button>
