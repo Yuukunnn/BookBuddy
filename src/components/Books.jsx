@@ -83,7 +83,7 @@ const Books = ({ userToken, isLoggedIn }) => {
       <Box
         component="input"
         type="text"
-        placeholder="Search by book name"
+        placeholder="Search a book name"
         value={targetName}
         onChange={(event) => setTargetName(event.target.value)}
         sx={{
@@ -155,13 +155,14 @@ const Books = ({ userToken, isLoggedIn }) => {
                       '&:hover': {
                         color: 'primary.main',
                       },
+                      fontWeight:"bold",fontStyle:"italic"
                     }}
                   >
-                    Title: {book.title}
+                    {book.title}
                   </Typography>
 
                   <Typography variant="body2" gutterBottom>
-                    Author: {book.author}
+                    By: {book.author}
                   </Typography>
 
                   {isLoggedIn && (
