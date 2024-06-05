@@ -28,9 +28,8 @@ const Register = () => {
             password: password,
           }),
         }
-      )
-      navigate('/login');
-
+      );
+      navigate("/login");
     } catch {
       console.error("error:", error);
     }
@@ -38,63 +37,68 @@ const Register = () => {
 
   return (
     <Box
-    component="form"
-    onSubmit={handleRegisterFormSubmit}
-    sx={{
-      width: '100%',
-      height: '91vh',
-      marginTop: '3%',
-      display: 'flex',
-      justifyContent:'center', alignItems:'center',
-      backgroundImage: 'url(/src/assets/311lxF-GHbL._AC_UF894,1000_QL80_.jpg)',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center'
-    }}
-    noValidate
-  >
-    <Grid container direction="column" spacing={4} justifyContent='center' alignItems='center'
-    sx={{
-      marginBottom: '150px',
-      width: '25%',
-      height: '80%'
-    }}
+      component="form"
+      onSubmit={handleRegisterFormSubmit}
+      sx={{
+        width: "100%",
+        height: "91vh",
+        marginTop: "3%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundImage:
+          "url(/src/assets/311lxF-GHbL._AC_UF894,1000_QL80_.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+      noValidate
     >
-      <Grid container item direction='column' sx={{ gap: '10px'}}>
-        <TextField
-          variant="outlined"
-          label="First Name"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-        <TextField
-          variant="outlined"
-          label="Last Name"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <TextField
-          variant="outlined"
-          label="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          variant="outlined"
-          label="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </Grid>
-      
+      <Grid
+        container
+        direction="column"
+        spacing={4}
+        justifyContent="center"
+        alignItems="center"
+        sx={{
+          marginBottom: "150px",
+          width: "25%",
+          height: "80%",
+        }}
+      >
+        <Grid container item direction="column" sx={{ gap: "10px" }}>
+          <TextField
+            variant="outlined"
+            label="First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <TextField
+            variant="outlined"
+            label="Last Name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <TextField
+            variant="outlined"
+            label="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            variant="outlined"
+            label="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Grid>
 
-      <Grid container item justifyContent='center' sx={{ gap: '20px' }}>
-        <Button variant="contained" type="submit">
-          Submit
-        </Button>
+        <Grid container item justifyContent="center" sx={{ gap: "20px" }}>
+          <Button variant="contained" type="submit">
+            Submit
+          </Button>
+        </Grid>
       </Grid>
-    </Grid>
-  </Box>
-
+    </Box>
   );
 };
 
