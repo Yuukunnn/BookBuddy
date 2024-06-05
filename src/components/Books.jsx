@@ -67,46 +67,47 @@ const Books = ({ userToken, isLoggedIn }) => {
       })
       .catch((err) => console.error(err));
   };
+  const sortedBooks = [...filteredBooks].sort((a, b) => a.title.localeCompare(b.title));
 
   return (
     <>
-<Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "16px",
-        marginTop: "25px",
-        fontSize: "36px",
-      }}
-    >
       <Box
-        component="input"
-        type="text"
-        placeholder="Search a book name"
-        value={targetName}
-        onChange={(event) => setTargetName(event.target.value)}
         sx={{
-          padding: '12px',
-          border: '1px solid #ccc',
-          borderRadius: '4px',
-          width: '300px',
-          fontSize: '16px',
-        }}
-      />
-      <Button
-        onClick={handleSearchClick}
-        variant="contained"
-        color="primary"
-        sx={{
-          padding: '12px 20px',
-          fontSize: '16px',
-          textTransform: 'none', // Keeps the text case as is
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "16px",
+          marginTop: "25px",
+          fontSize: "36px",
         }}
       >
-        Search
-      </Button>
-    </Box>
+        <Box
+          component="input"
+          type="text"
+          placeholder="Search a book name"
+          value={targetName}
+          onChange={(event) => setTargetName(event.target.value)}
+          sx={{
+            padding: "12px",
+            border: "1px solid #ccc",
+            borderRadius: "4px",
+            width: "300px",
+            fontSize: "16px",
+          }}
+        />
+        <Button
+          onClick={handleSearchClick}
+          variant="contained"
+          color="primary"
+          sx={{
+            padding: "12px 20px",
+            fontSize: "16px",
+            textTransform: "none", // Keeps the text case as is
+          }}
+        >
+          Search
+        </Button>
+      </Box>
 
       <Paper
         sx={{
@@ -120,8 +121,9 @@ const Books = ({ userToken, isLoggedIn }) => {
             theme.palette.mode === "dark" ? "#1A2027" : "#fff",
         }}
       >
-        {filteredBooks.map((book) => (
+        {sortedBooks.map((book) => (
           <Grid
+
             container
             spacing={10}
             sx={{
@@ -129,6 +131,7 @@ const Books = ({ userToken, isLoggedIn }) => {
               alignItems: "center",
               marginBottom: 2,
             }}
+            key={book.id}
           >
             <Grid item>
               <ButtonBase sx={{ width: 160, height: 200 }}>
@@ -151,11 +154,12 @@ const Books = ({ userToken, isLoggedIn }) => {
                     component="div"
                     onClick={() => navigate(`/books/${book.id}`)}
                     sx={{
-                      cursor: 'pointer',
-                      '&:hover': {
-                        color: 'primary.main',
+                      cursor: "pointer",
+                      "&:hover": {
+                        color: "primary.main",
                       },
-                      fontWeight:"bold",fontStyle:"italic"
+                      fontWeight: "bold",
+                      fontStyle: "italic",
                     }}
                   >
                     {book.title}

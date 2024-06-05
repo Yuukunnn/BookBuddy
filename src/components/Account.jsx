@@ -7,10 +7,6 @@ const Account = ({ userData, reservedBooks, setReservedBooks, userToken }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("reserbedBooks: ", reservedBooks);
-  }, [reservedBooks]);
-
-  useEffect(() => {
     fetch(
       "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/reservations",
       {
