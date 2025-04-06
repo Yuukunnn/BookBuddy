@@ -1,7 +1,7 @@
-import {  useNavigate } from "react-router-dom";
-import { useState } from "react";
-import PropTypes from "prop-types";
-import { Box, Tabs, Tab, Button } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Box, Tabs, Tab, Button } from '@mui/material';
 
 const LinkTab = (props) => {
   const { label, to, ...other } = props;
@@ -12,7 +12,7 @@ const LinkTab = (props) => {
     navigate(to);
   };
 
-  return <Tab component="a" onClick={handleClick} label={label} {...other} />;
+  return <Tab component='a' onClick={handleClick} label={label} {...other} />;
 };
 
 LinkTab.propTypes = {
@@ -38,10 +38,7 @@ const Navbar = ({ isLoggedIn }) => {
   const [value, setValue] = useState(1);
 
   const handleChange = (event, newValue) => {
-    if (
-      event.type !== "click" ||
-      (event.type === "click" && samePageLinkNavigation(event))
-    ) {
+    if (event.type !== 'click' || (event.type === 'click' && samePageLinkNavigation(event))) {
       setValue(newValue);
     }
   };
@@ -50,26 +47,24 @@ const Navbar = ({ isLoggedIn }) => {
 
   const handleAccountOrLogin = () => {
     if (isLoggedIn) {
-      navigate("/account");
+      navigate('/account');
     } else {
-      navigate("/login");
+      navigate('/login');
     }
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: '100%' }}>
       <Tabs
         value={value}
         onChange={handleChange}
-        aria-label="nav tabs example"
-        role="navigation"
+        aria-label='nav tabs example'
+        role='navigation'
         centered
       >
-        <Button onClick={handleAccountOrLogin}>
-          {isLoggedIn ? "Account" : "Login"}{" "}
-        </Button>
-        <LinkTab label="Home" to="/" />
-        <LinkTab label="Books" to="/books" />
+        <Button onClick={handleAccountOrLogin}>{isLoggedIn ? 'Account' : 'Login'} </Button>
+        <LinkTab label='Home' to='/' />
+        <LinkTab label='Books' to='/books' />
       </Tabs>
     </Box>
   );
